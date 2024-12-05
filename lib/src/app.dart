@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'domain/local/preferences/local_storage.dart';
 import 'domain/server/http_client/app_config.dart';
-import 'features/home/view/home_page_screen.dart';
+import 'features/home/view/table_screen.dart';
 import 'global/constants/enum.dart';
 import 'initializer.dart';
 

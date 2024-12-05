@@ -2,12 +2,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:soft_task/src/features/input_type/view/input_type_screen.dart';
-
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
 import '../../../global/widget/global_sized_box.dart';
+import '../../table/view/input_type_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void route(){
     Timer(const Duration(seconds: 3), () {
-      Get.offAll(()=> const InputTypeScreen());
+      Get.offAll(()=> const TableScreen());
     });
   }
 

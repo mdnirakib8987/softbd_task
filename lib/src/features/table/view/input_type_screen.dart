@@ -8,28 +8,28 @@ import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
 import '../controller/input_type_controller.dart';
 
-class InputTypeScreen extends StatefulWidget {
-  const InputTypeScreen({super.key});
+class TableScreen extends StatefulWidget {
+  const TableScreen({super.key});
 
   @override
-  State<InputTypeScreen> createState() => _InputTypeScreenState();
+  State<TableScreen> createState() => _TableScreenState();
 }
 
-class _InputTypeScreenState extends State<InputTypeScreen> {
+class _TableScreenState extends State<TableScreen> {
   final GlobalKey<ScaffoldState> drawerKey = GlobalKey<ScaffoldState>();
   final Map<String, String?> selectedRadioValues = {};
 
   @override
   void initState() {
     super.initState();
-    final inputTypeController = InputTypeController.current;
+    final inputTypeController = TableController.current;
 
     inputTypeController.getInputTypes();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<InputTypeController>(builder: (controller) {
+    return GetBuilder<TableController>(builder: (controller) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         key: drawerKey,

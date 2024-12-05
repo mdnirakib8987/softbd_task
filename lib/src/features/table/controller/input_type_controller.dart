@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import '../model/input_type_model.dart';
 import 'input_type_repo.dart';
 
-class InputTypeController extends GetxController {
-  static InputTypeController get current => Get.find();
+class TableController extends GetxController {
+  static TableController get current => Get.find();
   final InputTypeRepo repository = InputTypeRepo();
 
   InputTypeModel? inputTypeModel;
