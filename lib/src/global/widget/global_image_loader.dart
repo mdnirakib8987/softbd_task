@@ -31,7 +31,7 @@ class GlobalImageLoader extends StatelessWidget {
         fit: fit,
         color: color,
         errorBuilder: errorBuilder ?? (context, exception, stackTrace) => Center(
-            child: Image.asset("assets/images/place_holder_img.jpg",
+            child: Image.asset("assets/images/soft_logo.png",
                 height: height,
                 width: width,
                 fit: BoxFit.fill,
@@ -46,7 +46,7 @@ class GlobalImageLoader extends StatelessWidget {
         fit: fit,
         color: color,
         errorBuilder: errorBuilder ?? (context, exception, stackTrace) => Center(
-            child: Image.asset("assets/images/place_holder_img.jpg",
+            child: Image.asset("assets/images/soft_logo.png",
                 height: height,
                 width: width,
                 fit: BoxFit.fill

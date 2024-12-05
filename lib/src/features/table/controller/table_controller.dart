@@ -12,7 +12,6 @@ class TableController extends GetxController {
   var isLoading = false;
 
   /// ==/@ HTML data as a string
-
   final String htmlData = '''
 <html>
   <head></head>

@@ -12,6 +12,6 @@ class Images {
   //::::::::::::::::::::::::: Splash Img
 
   static const String emptyIc = '';
-  static const String warningIc = 'assets/images/warning.png';
+  static const String softLogo = 'assets/soft_logo.png';
 
 }

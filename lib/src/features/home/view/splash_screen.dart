@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:soft_task/src/global/constants/enum.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
@@ -42,10 +43,11 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
         child: const Center(
           child: GlobalImageLoader(
-            imagePath: Images.warningIc,
+            imagePath: Images.softLogo,
             height: 186,
             width: 186,
             fit: BoxFit.fill,
+            imageFor: ImageFor.asset,
           ),
         ),
       ),

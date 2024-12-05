@@ -55,6 +55,8 @@ class _TableScreenState extends State<TableScreen> {
           child: Column(
             children: [
               sizedBoxH(20),
+
+              /// ==/@ Table Widget..
               Expanded(
                 child: Table(
                   border: TableBorder.all(
@@ -100,6 +102,7 @@ class _TableScreenState extends State<TableScreen> {
                 ),
               ),
 
+              /// ==/@ Result..
               SizedBox(
                 width: size(context).width,
                 child: Row(
@@ -121,6 +124,7 @@ class _TableScreenState extends State<TableScreen> {
                 ),
               ),
 
+              /// ==/@ Calculation..
               sizedBoxH(10),
               GlobalButtonWidget(
                 str: "Calculation",
