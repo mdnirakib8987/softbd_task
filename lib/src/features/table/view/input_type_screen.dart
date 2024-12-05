@@ -21,6 +21,8 @@ class _TableScreenState extends State<TableScreen> {
   final GlobalKey<ScaffoldState> drawerKey = GlobalKey<ScaffoldState>();
   final Map<String, String?> selectedRadioValues = {};
 
+  int? sumResult;
+
   @override
   void initState() {
     super.initState();
@@ -49,64 +51,86 @@ class _TableScreenState extends State<TableScreen> {
           height: size(context).height,
           width: size(context).width,
           color: ColorRes.grey.withOpacity(0.3),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
+              sizedBoxH(20),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Table(
-                    border: TableBorder.all(
-                      borderRadius: BorderRadius.circular(10),
-                        color: Colors.grey.withOpacity(0.7)
-                    ),
-                    columnWidths: const {
-                      0: FlexColumnWidth(1),
-                      1: FlexColumnWidth(1),
-                    },
-                    children: controller.tableData.map((row) {
-                      return TableRow(
-                        children: row.map((cell) {
-                          return TableCell(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: cell == 'edit_text'
-                                  ? GlobalTextFormField(
-                                keyboardType: TextInputType.number,
-                                decoration: nonInputField,
-                                isDense: true,
-                                onChanged: (value) {
-                                  if (value.isNotEmpty) {
-                                    controller.validateAndUpdate(
-                                      controller.tableData.indexOf(row),
-                                      row.indexOf(cell),
-                                      value,
-                                    );
-                                  }
-                                },
-                              )
-                                  : Center(child: GlobalText(str: cell.toString()))
-                            ),
-                          );
-                        }).toList(),
-                      );
-                    }).toList(),
+                child: Table(
+                  border: TableBorder.all(
+                    borderRadius: BorderRadius.circular(10),
+                      color: Colors.grey.withOpacity(0.7)
                   ),
+                  columnWidths: const {
+                    0: FlexColumnWidth(1),
+                    1: FlexColumnWidth(1),
+                  },
+                  children: controller.tableData.map((row) {
+                    return TableRow(
+                      children: row.map((cell) {
+                        return TableCell(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: cell == 'edit_text'
+                                ? GlobalTextFormField(
+                              keyboardType: TextInputType.number,
+                              decoration: nonInputField,
+                              hintText: "Enter Value",
+                              isDense: true,
+                              onChanged: (value) {
+                                if (value.isNotEmpty) {
+                                  controller.validateAndUpdate(
+                                    controller.tableData.indexOf(row),
+                                    row.indexOf(cell),
+                                    value,
+                                  );
+                                }
+                              },
+                            )
+                                : Center(
+                                child: GlobalText(
+                                  str: cell.toString(),
+                                )
+                            )
+                          ),
+                        );
+                      }).toList(),
+                    );
+                  }).toList(),
                 ),
               ),
 
-
-              GlobalButtonWidget(
-                str: "Sum Data",
-                height: 45,
-                onTap: () {
-                  final sum = controller.calculateSum();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Total Sum: $sum')),
-                  );
-                },
+              SizedBox(
+                width: size(context).width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Flexible(
+                      child: GlobalText(
+                        str: "Result: ",
+                        color: ColorRes.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    GlobalText(
+                      str: sumResult != null ? sumResult.toString() : "",
+                      fontSize: 20,
+                    ),
+                  ],
+                ),
               ),
 
-
+              sizedBoxH(10),
+              GlobalButtonWidget(
+                str: "Calculation",
+                height: 45,
+                onTap: () {
+                  setState(() {
+                    sumResult = controller.calculateSum();
+                  });
+                },
+              ),
               sizedBoxH(20)
             ],
           ),
@@ -115,4 +139,3 @@ class _TableScreenState extends State<TableScreen> {
     });
   }
 }
-

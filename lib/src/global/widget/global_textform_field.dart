@@ -152,7 +152,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
             hintText: widget.hintText,
             hintStyle: widget.hintTextStyle ?? GoogleFonts.roboto(
                 fontSize: 12,
-                color: ColorRes.white200,
+                color: ColorRes.grey.withOpacity(0.7),
                 fontWeight: FontWeight.w400
             ),
             // const TextStyle(
@@ -188,7 +188,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
             hintText: widget.hintText,
             hintStyle: widget.hintTextStyle ?? GoogleFonts.roboto(
                 fontSize: 12,
-                color: ColorRes.white200,
+                color: ColorRes.grey.withOpacity(0.7),
                 fontWeight: FontWeight.w400
             ),
             labelText: widget.labelText,

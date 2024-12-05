@@ -34,7 +34,7 @@ void showCustomSnackBar(String message, {
         margin: const EdgeInsets.all(12),
         borderRadius: 10,
         isDismissible: true,
-        snackPosition: isPosition?SnackPosition.BOTTOM:SnackPosition.TOP,
+        snackPosition: isPosition?SnackPosition.TOP:SnackPosition.TOP,
         icon: Icon(isError ? Icons.error : Icons.check_circle,
           size: 25,
           color: ColorRes.white,
