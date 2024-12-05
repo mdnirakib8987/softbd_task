@@ -8,7 +8,7 @@ import '../../../global/widget/global_appbar.dart';
 import '../../../global/widget/global_container.dart';
 import '../../../global/widget/global_sized_box.dart';
 import '../../../global/widget/global_text.dart';
-import '../controller/input_type_controller.dart';
+import '../controller/table_controller.dart';
 
 class TableScreen extends StatefulWidget {
   const TableScreen({super.key});

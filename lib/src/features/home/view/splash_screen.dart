@@ -6,7 +6,7 @@ import '../../../global/constants/colors_resources.dart';
 import '../../../global/constants/images.dart';
 import '../../../global/widget/global_image_loader.dart';
 import '../../../global/widget/global_sized_box.dart';
-import '../../table/view/input_type_screen.dart';
+import '../../table/view/table_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

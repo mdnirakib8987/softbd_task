@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'domain/local/preferences/local_storage.dart';
 import 'domain/local/preferences/storage_controller.dart';
 import 'domain/server/http_client/request_handler.dart';
-import 'features/table/controller/input_type_controller.dart';
+import 'features/table/controller/table_controller.dart';
 
 final locator = GetIt.instance;
 
