@@ -1,6 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:soft_task/src/global/constants/input_decoration.dart';
+import 'package:soft_task/src/global/widget/global_bottom_widget.dart';
+import 'package:soft_task/src/global/widget/global_textform_field.dart';
 import '../../../global/constants/colors_resources.dart';
 import '../../../global/widget/global_appbar.dart';
 import '../../../global/widget/global_container.dart';
@@ -22,9 +24,8 @@ class _TableScreenState extends State<TableScreen> {
   @override
   void initState() {
     super.initState();
-    final inputTypeController = TableController.current;
-
-    inputTypeController.getInputTypes();
+    final tableController = TableController.current;
+    tableController.initializeTableData();
   }
 
   @override
@@ -43,18 +44,71 @@ class _TableScreenState extends State<TableScreen> {
                 color: ColorRes.white,
               ),
               leading: SizedBox.shrink(),
-            )
-        ),
+            )),
         body: GlobalContainer(
           height: size(context).height,
           width: size(context).width,
-          color: ColorRes.grey.withOpacity(0.1),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
+          color: ColorRes.grey.withOpacity(0.3),
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Table(
+                    border: TableBorder.all(
+                      borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey.withOpacity(0.7)
+                    ),
+                    columnWidths: const {
+                      0: FlexColumnWidth(1),
+                      1: FlexColumnWidth(1),
+                    },
+                    children: controller.tableData.map((row) {
+                      return TableRow(
+                        children: row.map((cell) {
+                          return TableCell(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: cell == 'edit_text'
+                                  ? GlobalTextFormField(
+                                keyboardType: TextInputType.number,
+                                decoration: nonInputField,
+                                isDense: true,
+                                onChanged: (value) {
+                                  if (value.isNotEmpty) {
+                                    controller.validateAndUpdate(
+                                      controller.tableData.indexOf(row),
+                                      row.indexOf(cell),
+                                      value,
+                                    );
+                                  }
+                                },
+                              )
+                                  : Center(child: GlobalText(str: cell.toString()))
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
 
-              ],
-            ),
+
+              GlobalButtonWidget(
+                str: "Sum Data",
+                height: 45,
+                onTap: () {
+                  final sum = controller.calculateSum();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Total Sum: $sum')),
+                  );
+                },
+              ),
+
+
+              sizedBoxH(20)
+            ],
           ),
         ),
       );
@@ -62,86 +116,3 @@ class _TableScreenState extends State<TableScreen> {
   }
 }
 
-
-// body: GlobalContainer(
-//     height: size(context).height,
-//     width: size(context).width,
-//     color: ColorRes.grey.withOpacity(0.1),
-//     child: ListView.builder(
-//         itemCount: 1,
-//         shrinkWrap: true,
-//         itemBuilder: (ctx, index){
-//         final attributesData = jsonResponse?.attributes?[index];
-//         return Column(
-//             children: [
-//
-//               attributesData?.type == 'radio' ?
-//               RadioListTitleFiled(
-//                   title: "Include Outdoor Area",
-//                   radioList: attributesData?.options ?? []
-//               ) : const SizedBox.shrink(),
-//
-//               sizedBoxH(5),
-//               attributesData?.type == 'dropdown' ?
-//               DropDownTitleFiled(
-//                 title1: "Number of Bedrooms",
-//                 title2: "Number of Bedrooms",
-//                 radioList1: attributesData?.options ?? [],
-//                 radioList2: attributesData?.options ?? []
-//               ) : const SizedBox.shrink(),
-//
-//               attributesData?.type == 'radio' ?
-//               RadioListTitleFiled(
-//                   title: "Cleaning Frequency",
-//                   radioList: attributesData?.options ?? []
-//               ) : const SizedBox.shrink(),
-//
-//               sizedBoxH(5),
-//               const CheckTitleFiled(
-//                 title: "Include Garage Cleaning",
-//                 radioList: ['One Time', 'Weekly', 'Mobile Banking'],
-//               ),
-//
-//               sizedBoxH(5),
-//               const CheckTitleFiled(
-//                 title: "Include Outdoor Area",
-//                 radioList: ['One Time', 'Weekly', 'Mobile Banking'],
-//               ),
-//
-//               sizedBoxH(5),
-//               TextTitleFiled(
-//                 title1: "Preferred Cleaning Time",
-//                 timeController: timeController,
-//               ),
-//
-//               sizedBoxH(5),
-//               Container(
-//                 width: size(context).width,
-//                 color: ColorRes.white,
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.start,
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//
-//                     sizedBoxH(20),
-//                     GlobalButtonWidget(
-//                         str: 'Submit',
-//                         height: 40,
-//                         radius: 8,
-//                         textSize: 12,
-//                         horizontal: 10,
-//                         buttomColor: ColorRes.primaryColor,
-//                         onTap: () async{
-//
-//                         }
-//                     ),
-//                     sizedBoxH(20),
-//                   ],
-//                 ),
-//               ),
-//
-//             ],
-//           );
-//       }
-//     )
-// ),

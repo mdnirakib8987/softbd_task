@@ -140,6 +140,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
           readOnly: widget.readOnly ?? false,
           enableIMEPersonalizedLearning: false,
           initialValue: widget.initialValue,
+          textAlign: TextAlign.center,
           controller: widget.controller,
           obscureText: widget.obscureText ?? isVisible,
           obscuringCharacter: widget.obscuringCharacter ?? "*",

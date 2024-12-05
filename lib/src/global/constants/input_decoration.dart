@@ -33,7 +33,6 @@ InputDecoration inputDecoration = InputDecoration(
 );
 
 InputDecoration nonInputField = const InputDecoration(
-
   border: InputBorder.none,
   errorBorder: InputBorder.none,
   focusedErrorBorder: InputBorder.none,
